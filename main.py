@@ -18,10 +18,11 @@ while len(guessed_province) < 34:
                                        prompt="What's another province's name?").title()
 
     if answer_province == "Exit":
-        missing_province = []
-        for province in all_province:
-            if province not in guessed_province:
-                missing_province.append(province)
+        missing_province = [province for province in all_province if province not in guessed_province]
+#         missing_province = []
+#         for province in all_province:
+#             if province not in guessed_province:
+#                 missing_province.append(province)
         new_data = pandas.DataFrame(missing_province)
         new_data.to_csv("provinces_to_learn.csv")
         break
